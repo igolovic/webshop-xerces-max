@@ -1,0 +1,32 @@
+<p class="indexTitle">
+    Search results
+</p>
+<p>
+    Keywords:
+    <span style="font-weight:bold;">
+        <?php echo $this->escape($this->searchQuery) ?>
+    </span>
+</p>
+<?php
+    $ordinal = 1;
+    foreach($this->foundItems as $fi):
+?>
+    <hr />
+    <p style="font-size:8pt;">
+        <span class="indexTitle">
+            <?php echo $ordinal ?>.
+        </span>
+        Number of key word occurences: <?php echo $fi['sort'] ?>
+    </p>
+    <p>
+        <a href="<?php echo $fi['groupTitle'] ?>">
+            <?php echo $fi['title'] ?>
+        </a>
+    </p>
+    <p>
+        <?php echo $fi['description_text'] ?>
+    </p>
+<?php
+    $ordinal++;
+    endforeach
+?>

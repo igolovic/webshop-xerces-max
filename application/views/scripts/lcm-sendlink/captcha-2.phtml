@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="background:none;">
+    <head>  
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="/xerces-max.css" />
+    </head>
+    <body style="background:none;">    
+        <div class="contentWrapper">
+            <form action="/lcm-sendlink/link=<?php echo $this->escape($this->link) ?>" method="post">
+                <p>
+                    <strong>1. Link that you wish to send</strong>
+                </p>
+                <p>
+                    <?php echo $this->escape($this->link) ?>
+                    <input type="hidden" name="sentLink" value="<?php echo $this->escape($this->link) ?>" />
+                </p>
+                <p>
+                    <strong>2. Security check</strong>
+                </p>
+                <p>
+                    Enter text from the image.
+                </p>
+                <p style="text-align:center;">
+                    <?php echo $this->captchaImage ?>
+                </p>
+                <p>
+                    Captcha text: <input style="float:right;" type="text" name="captcha[input]" maxlength="20" /> 
+                </p>
+                <p>
+                    <strong>3. Please enter your name</strong>
+                </p>
+                <p>
+                    Your name: <input style="float:right;" type="text" name="senderName" maxlength="20" /> 
+                </p>
+                <p>
+                    <strong>4. Recipient's e-mail address</strong>
+                </p>
+                <p>
+                    Address: <input style="float:right;" type="text" name="recipientAddress" maxlength="40" /> 
+                </p>
+                <p>
+                    <input type="submit" value="Send" />
+                </p>
+                <div class="error">
+                    <?php if($this->senderNameError): ?>
+                        You haven't entered your name.
+                    <?php endif ?>
+                </div>
+                <div class="error">
+                    <?php if($this->recipientAddressError): ?>
+                        You haven't entered the e-mail address.
+                    <?php endif ?>
+                </div>
+                <div class="error">
+                    <?php if($this->captchaError): ?>
+                        You have entered wrong captcha text, try again.
+                    <?php endif ?>
+                </div>
+                <div class="error">
+                    <?php if($this->sendMailError): ?>
+                        Error while sending mail.
+                    <?php endif ?>
+                </div>
+                <div class="ok">
+                    <?php if($this->ok): ?>
+                        Message was sent.
+                    <?php endif ?>
+                </div>        
+                <input type="hidden" name="captcha[id]" value="<?php echo $this->escape($this->captchaMD5) ?>" />
+            </form>
+        </div>
+    </body>
+</html>

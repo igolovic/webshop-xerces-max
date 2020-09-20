@@ -1,0 +1,22 @@
+<div class="contentWrapper">
+    <!-- breadcrumb -->
+    <p>
+        <?php foreach($this->breadCrumb as $bci): ?>
+            <a class="breadCrumb" href="/<?php echo $this->escape($bci['path']) ?>"> &gt; <?php echo $this->escape($bci['title']) ?></a>
+        <?php endforeach ?>
+    </p>
+    <!-- information about current group -->
+    <p style="padding:5px">
+        <?php echo $this->groupItem->getDescription() ?>
+    </p>
+    <?php foreach($this->groupItems as $gi): ?>  
+    <table>
+        <tr>
+            <td>
+                <a class="indexGroupTitle" href="<?php echo $this->cms->title2path($this->groupItem->getTitle() . '/' . $gi->getTitle()) ?>">&gt;&gt; <?php echo  $this->escape($gi->getTitle()) ?></a>
+                <br />
+            </td>
+        </tr>
+    </table>
+    <?php endforeach ?>
+</div>

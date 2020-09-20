@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+<projectProfile type="default" version="1.10">
+  <projectDirectory>
+    <projectProfileFile filesystemName=".zfproject.xml"/>
+    <applicationDirectory classNamePrefix="Application_">
+      <apisDirectory enabled="false"/>
+      <configsDirectory>
+        <applicationConfigFile type="ini"/>
+      </configsDirectory>
+      <controllersDirectory>
+        <controllerFile controllerName="Index">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="displayCart"/>
+          <actionMethod actionName="noData"/>
+          <actionMethod actionName="group"/>
+        </controllerFile>
+        <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="About">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="details"/>
+        </controllerFile>
+        <controllerFile controllerName="Contact">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Products">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="handle"/>
+          <actionMethod actionName="details"/>
+        </controllerFile>
+        <controllerFile controllerName="Discount">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="News">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Links">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Services">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="ProductsListing">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Search">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Cart">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="addToCart"/>
+          <actionMethod actionName="displayCart"/>
+          <actionMethod actionName="emptyCart"/>
+        </controllerFile>
+        <controllerFile controllerName="Order">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="noData"/>
+        </controllerFile>
+        <controllerFile controllerName="Admin">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Group">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="ArticleGroup">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Language">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsLanguage">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsSearch">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsSendLink">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsSendlink">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="checkCaptcha"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsSitemap">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsArticleGroup">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsProductGroup">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsCart">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsOrder">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsAdmin">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="artivleGroup"/>
+          <actionMethod actionName="articleGroup"/>
+        </controllerFile>
+        <controllerFile controllerName="IGDevCMSContact">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="IgdevcmsContact">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+      </controllersDirectory>
+      <formsDirectory enabled="false"/>
+      <layoutsDirectory enabled="false"/>
+      <modelsDirectory/>
+      <modulesDirectory enabled="false"/>
+      <viewsDirectory>
+        <viewScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Error">
+            <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="About">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Contact">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Products">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Discount">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="News">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Links">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Services">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="ProductsListing">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Products">
+            <viewScriptFile forActionName="handle"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Products">
+            <viewScriptFile forActionName="details"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="About">
+            <viewScriptFile forActionName="details"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Search">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Cart">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Cart">
+            <viewScriptFile forActionName="addToCart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="displayCart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Cart">
+            <viewScriptFile forActionName="displayCart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Cart">
+            <viewScriptFile forActionName="emptyCart"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Order">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="noData"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Order">
+            <viewScriptFile forActionName="noData"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Group">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="ArticleGroup">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="group"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Language">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsLanguage">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsSearch">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsSendLink">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsSendlink">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsSitemap">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsSendlink">
+            <viewScriptFile forActionName="checkCaptcha"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsArticleGroup">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsProductGroup">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsCart">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsOrder">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsAdmin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsAdmin">
+            <viewScriptFile forActionName="artivleGroup"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsAdmin">
+            <viewScriptFile forActionName="articleGroup"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IGDevCMSContact">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="IgdevcmsContact">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+        </viewScriptsDirectory>
+        <viewHelpersDirectory/>
+        <viewFiltersDirectory enabled="false"/>
+      </viewsDirectory>
+      <bootstrapFile filesystemName="Bootstrap.php"/>
+    </applicationDirectory>
+    <dataDirectory enabled="false">
+      <cacheDirectory enabled="false"/>
+      <searchIndexesDirectory enabled="false"/>
+      <localesDirectory enabled="false"/>
+      <logsDirectory enabled="false"/>
+      <sessionsDirectory enabled="false"/>
+      <uploadsDirectory enabled="false"/>
+    </dataDirectory>
+    <docsDirectory>
+      <file filesystemName="README.txt"/>
+    </docsDirectory>
+    <libraryDirectory>
+      <zfStandardLibraryDirectory enabled="false"/>
+    </libraryDirectory>
+    <publicDirectory>
+      <publicStylesheetsDirectory enabled="false"/>
+      <publicScriptsDirectory enabled="false"/>
+      <publicImagesDirectory enabled="false"/>
+      <publicIndexFile filesystemName="index.php"/>
+      <htaccessFile filesystemName=".htaccess"/>
+    </publicDirectory>
+    <projectProvidersDirectory enabled="false"/>
+    <temporaryDirectory enabled="false"/>
+    <testsDirectory>
+      <testPHPUnitConfigFile filesystemName="phpunit.xml"/>
+      <testApplicationDirectory>
+        <testApplicationBootstrapFile filesystemName="bootstrap.php"/>
+        <testApplicationControllerDirectory>
+        </testApplicationControllerDirectory>
+      </testApplicationDirectory>
+      <testLibraryDirectory>
+        <testLibraryBootstrapFile filesystemName="bootstrap.php"/>
+      </testLibraryDirectory>
+    </testsDirectory>
+  </projectDirectory>
+</projectProfile>

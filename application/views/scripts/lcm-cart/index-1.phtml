@@ -1,0 +1,75 @@
+<table id="cartItems" cellspacing="0" cellpadding="5">
+    <tr id="cartHeader">
+        <td class="cartLeftBorder">
+            Šifra proizvoda
+        </td>
+        <td>
+            Naziv proizvoda
+        </td>
+        <td>
+            Cijena po komadu (kn)
+        </td>
+        <td>
+            Količina (kom)
+        </td>
+        <td>
+            Ukupna cijena (kn)
+        </td>
+        <td class="cartRightBorder">
+            &nbsp;
+        </td>
+    </tr>
+<?php foreach($this->cartItems as $ci): ?>
+    <tr id="tr<?php echo $this->escape($ci->getId()) ?>">
+        <td class="cartLeftBorder">
+            <?php echo $this->escape($ci->getId()) ?>
+        </td>
+        <td>
+            <?php echo $this->escape($ci->getTitle()) ?>
+        </td>
+        <td id="tdSingleCartItemPrice<?php echo $this->escape($ci->getId()) ?>">
+            <?php echo $this->escape($ci->getPrice()) ?>
+        </td>
+        <td>
+            <form id="divQuantity<?php echo $this->escape($ci->getId()) ?>" action="">                        
+                <input value="<?php echo $this->escape($ci->getQuantity()) ?>" type="text" name="inpQuantity<?php echo $this->escape($ci->getId()) ?>" id="inpQuantity<?php echo $this->escape($ci->getId()) ?>" class="inpProductQuantity" />
+                &nbsp;&nbsp;
+                <a href="#" onclick="addToCart(<?php echo $this->escape($ci->getId()) ?>, document.getElementById('inpQuantity<?php echo $this->escape($ci->getId()) ?>').value); return false;">
+                    <img onmouseout="hideddrivetip()" onmouseover="ddrivetip('Unesi promjenu količine')" alt="" src="/images/cart.png" />
+                </a>
+            </form>
+        </td>
+        <td id="tdSingleCartItemPriceTotal<?php echo $this->escape($ci->getId()) ?>">
+            <?php echo $this->escape($ci->getTotalPrice()) ?>
+        </td>
+        <td class="cartRightBorder">
+            <a href="#" onclick="removeFromCart(<?php echo $this->escape($ci->getId()) ?>); return false;">Izbriši iz košarice</a>
+        </td>
+    </tr>
+<?php endforeach ?>
+    <tr id="cartFooter">
+        <td class="cartLeftBorder">
+            Ukupno
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            <span id="spanCartItemCount2"><?php echo $this->escape($this->cartItemCount) ?></span>
+        </td>
+        <td>
+            <span id="spanCartValueTotal2"><?php echo $this->escape($this->cartValueTotal) ?></span>
+        </td>
+        <td class="cartRightBorder">
+            &nbsp;
+        </td>
+    </tr>
+</table>
+<p id="sendOrderContainer">
+    <input type="button" value="Nastavi kupnju" onclick="document.location = '/'" />
+    <input style="visibility:<?php echo $this->escape($this->inpOrderVisibility) ?>;" type="button" id="inpOrder" value="Na blagajnu" onclick="document.location = '/lcm-order/index'" />
+    <input style="visibility:<?php echo $this->escape($this->inpEmptyVisibility) ?>" type="button" id="inpEmpty" value="Isprazni košaricu" onclick="emptyCart(); return false;" />
+</p>

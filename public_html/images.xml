@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<slideshow>
+	<photo image="/images/logo-1.jpg" url="/" target="_blank" duration="2" hpos="right" vpos="bottom">
+	<![CDATA[<head>Dobrodošli na naše web stranice</head><body>Želimo Vam ugodno surfanje na našem sajtu</body>]]></photo>
+	<photo image="/images/logo-2.jpg" url="/" target="_blank" duration="2" hpos="right" vpos="bottom">
+	<![CDATA[<head>Ovdje možete saznati sve o našim proizvodima</head><body>Pronađite sve informacije koje Vas zanimaju o našoj tvrtci</body>]]></photo>
+	<photo image="/images/logo-3.jpg" url="/" target="_blank" duration="2" hpos="right" vpos="bottom">
+	<![CDATA[<head>Obratite nam se s povjerenjem</head><body>Vaš pouzdani partner Xerces-Max</body>]]></photo>
+</slideshow>

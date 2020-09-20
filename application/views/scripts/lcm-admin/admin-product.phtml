@@ -1,0 +1,299 @@
+<form enctype="multipart/form-data" id="form" action="/lcm-admin-product/" method="post">
+    <table class="workspace" cellpadding="5">
+        <tr>
+            <td colspan="2" class="title workspaceCell" style="border-color:silver;">
+                Trenutno odabrani modul: <span class="high">Proizvodi</span>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="5" class="workspaceCell" style="width:15%; border-color:silver;">
+                Odaberite grupu čije proizvode želite uređivati:
+                <br />
+                <br />
+                <select name="productGroupId" onchange="document.getElementById('form').submit()">
+                    <option value="0"></option>
+                    <?php foreach($this->productGroupItems as $pgi): ?>
+                    <option value="<?php echo $pgi->getId() ?>" <?php if($pgi->getId() == $this->selectedProductGroupId) { echo "selected='selected'"; } ?>>
+                        <?php echo $pgi->getTitle() ?>
+                    </option>
+                    <?php endforeach ?>
+                </select>
+                <br />
+                <br />
+                Odaberite proizvod koji želite uređivati:
+                <br />
+                <br />
+                <?php if(isset($this->productItems)): ?>
+                    <select name="productId" onchange="document.getElementById('form').submit()">
+                        <option value="0"></option>
+                        <?php foreach($this->productItems as $pi): ?>
+                        <option value="<?php echo $pi->getId() ?>" <?php if($pi->getId() == $this->selectedProductId) { echo "selected='selected'"; } ?>>
+                            <?php echo $pi->getTitle() ?>
+                        </option>
+                        <?php endforeach ?>
+                    </select>
+                <?php endif ?>
+                <br />
+                <br />
+            </td>
+            <td class="workspaceCell" style="width:85%; border-color:silver;">
+            
+                <table style=
+                       "width:100%;
+                    <?php echo ($this->hasMessage) ? 'display:block;' : 'display:none;'; 
+                       echo ($this->isErr) ? 'background-color:#FFFFCC; border:1px solid #CC0000; color:#CC0000;' : 'background-color:#F0FFF0; border:1px solid #00FF00; color:#00FF00;';
+                    ?> "
+                >
+                    <tr>
+                        <td>
+                            <?php echo $this->message; ?>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%; text-align:left;">
+                            <span class="title">
+                                Trenutno odabrani proizvod: <span class="high"><?php echo $this->currentProduct_Title ?></span>
+                            </span>
+                        </td>
+                        <td style="width:50%; text-align:right;">
+                            <input name="new" type="button" value="Dodavanje novog proizvoda" onclick="document.location='/lcm-admin-product/'">
+                            <input name="save" type="submit" value="Spremi promjene" />
+                            <input name="deleteProduct" type="submit" value="Obriši proizvod" onclick="return confirm('Da li ste sigurni da želite obrisati proizvod?')" <?php if(!$this->saveImageEnabled) { echo "disabled='disabled'"; } ?> />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- tr containing general properties of a product -->        
+        <tr>
+            <td class="workspaceCell" style="width:85%; border-color:silver;">
+                <span class="title">
+                    Opće postavke proizvoda
+                </span>
+                <br />
+                <br />
+                <table class="property">
+                    <tr>
+                        <td class="propertyName">
+                            ID proizvoda:
+                        </td>
+                        <td class="propertyValue">
+                            <input type="text" maxlength="256" class="disabled" readonly="true" name="selectedProductId" value="<?php echo $this->currentProduct_Id ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Grupa:
+                        </td>
+                        <td class="propertyValue">
+                            <select name="parentId" <?php echo $this->parentSelectEnabled ? '' : "class='disabled' disabled='disabled'" ?>>
+                                <?php foreach($this->productGroupItems as $pgi): ?>
+                                <option value="<?php echo $pgi->getId() ?>" <?php if($pgi->getId() == $this->currentProduct_GroupId) { echo "selected='selected'"; } ?>>
+                                    <?php echo $pgi->getTitle() ?>
+                                </option>
+                                <?php endforeach ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Redoslijed unutar roditeljske grupe:
+                        </td>
+                        <td class="propertyValue">
+                            <input type="text" maxlength="256" class="disabled" readonly="true" value="<?php echo $this->currentProduct_Order ?>" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- tr containing specific product properties -->
+        <tr>
+            <td class="workspaceCell" style="width:85%; border-color:silver;">
+                <span class="title">
+                    Specifične postavke proizvoda
+                </span>
+                <br />
+                <br />
+                <table class="property">
+                    <tr>
+                        <td class="propertyName">
+                            Cijena:
+                        </td>
+                        <td class="propertyValue">
+                            <input type="text" maxlength="10" name="price" value="<?php echo $this->currentProduct_Price ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Prikazati košaricu:
+                        </td>
+                        <td class="propertyValue">
+                        	<input type="checkbox" name="showCart" <?php echo $this->currentProduct_ShowCart ? 'checked="checked"' : ''; ?> />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Napomene uz proizvod:
+                        </td>
+                        <td class="propertyValue">
+							<select name="selectedProductExtraInfo" >
+                                <?php foreach($this->allProductExtraInfoItems as $item): ?>
+                                <option value="<?php echo $item['productExtraInfoTypeId'] ?>">
+                                    <?php echo $item['description'] ?>
+                                </option>
+                                <?php endforeach ?>
+                            </select>
+                            <input type="submit" name="addProductExtraInfo" value="Dodaj odabranu napomenu uz proizvod" <?php if(!$this->saveImageEnabled) { echo "disabled='disabled'"; } ?> />
+                            <?php foreach($this->productExtraInfoItems as $item): ?>
+                            	<div style="border:1px solid silver; padding:5px; margin-top:5px;">
+                                	<?php echo $item['description'] ?>
+                                    <br />
+                                    <input type="submit" name="deleteProductExtraInfo" value="Obriši napomenu uz proizvod" onclick="document.getElementById('inpSelectedProductExtraInfo').value='<?php echo $item['productExtraInfoTypeId'] ?>';" />                                    
+                                </div>
+                            <?php endforeach ?>
+                            <input id="inpSelectedProductExtraInfo" name="inpSelectedProductExtraInfo" type="hidden" value="" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- tr containing textual properties of an product -->
+        <tr>
+            <td class="workspaceCell" style="border-color:silver;">
+                <span class="title">
+                    Tekstualne postavke proizvoda
+                </span>
+                <br />
+                <br />
+                <table class="property">
+                    <tr>
+                        <td class="propertyName">
+                            Jezik:
+                        </td>
+                        <td class="propertyValue">
+                                <select name="languageId" onchange="document.getElementById('form').submit()">
+                                    <?php foreach($this->languageItems as $item): ?>
+                                    <option <?php if($item->getId() == $this->selectedLanguageId) { echo "selected='selected'"; } ?> value="<?php echo $item->getId() ?>">
+                                        <?php echo $item->getTitle() ?>
+                                    </option>
+                                    <?php endforeach ?>
+                                </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Naslov:
+                        </td>
+                        <td class="propertyValue">
+                            <input name="title" type="text" maxlength="256" value="<?php echo $this->currentProduct_Title?>" />
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="#" onclick="
+                            alert('Pravilo u dodavanju naslova:\n\n'
+                                   + '1. Naslov smije sadržavati samo:\n'
+                                   + 'velika slova(A-Ž)\n'
+                                   + 'mala slova (a-ž)\n'
+                                   + 'brojeve (0-9)\n'
+                                   + 'razmake.'); return false;"
+                            >Uputa za dodavanje naslova</a>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Opis proizvoda:
+                        </td>
+                        <td class="propertyValue">
+                            <textarea name="description" style="width:100%; height:200px;"><?php echo $this->currentProduct_Description?></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Tekst proizvoda:
+                        </td>
+                        <td class="propertyValue">
+                            <textarea name="text" style="width:100%; height:200px;"><?php echo $this->currentProduct_Text?></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="workspaceCell" style="border-color:silver;">
+                <span class="title">
+                    Slike vezane uz proizvod:
+                </span>
+                <p>
+                <a href="#" onclick="
+                alert('Ako želite uz prethodno dodanu sliku dodati komentar:\n\n'
+                       + '1. Ako dodajete tekst uz sliku na web site koji je višejezičan onda se komentar dodaje za onaj jezik koji je prethodno izabran u izborniku s jezicima.\n\n'
+                       + '2. Ako imate dodano više slika za koje želite dodati tekst onda se tekst dodaje za jednu po jednu sliku.\n'
+                       + 'Npr. da biste unijeli tekst za prvu sliku potrebno je unijeti tekst u polje uz prvu sliku a onda stisnuti gumb [Spremi tekst] koji se nalazi pokraj slike, da biste unijeli tekst za drugu sliku potrebno je unijeti tekst u polje uz drugu sliku a onda stisnuti gumb [Spremi tekst] koji se nalazi pokraj slike\n'                       
+                       + '- navedeni postupak potrebno je ponavljati za svaku od slika.\n\n'); return false;"
+                >Uputa za dodavanje komentara uz sliku</a>
+                &nbsp;&nbsp;&nbsp;                
+                <a href="#" onclick="
+                alert('Ako želite na web stranicu dodati sliku koja ima svoju veću verziju:\n\n'
+                       + '1. Slika ne smije u nazivu sadržavati razmake (bilo kakve razmake zapunite podvlakom ili crticom).\n\n'
+                       + '2. Prilikom postavljanja slike za koju želite da ima i manju i veću verziju uvijek prvo treba postaviti manju verziju slike a tek onda veću.\n\n'
+                       + '3. Kod imenovanja veće verzije slike potrebno je slijediti format naziva\n'
+                       + '- manja slika: [naziv].[troslovna ekstenzija]\n'
+                       + '- veća slika:  [naziv]L.[troslovna ekstenzija]\n'
+                       + 'Npr. ako se manja verzija slike zove Moj_proizvod.jpg onda se veća verzija mora zvati Moj_proizvodL.jpg.\n\n'                       
+                       + '4. Veća verzija slike ne smije se staviti kao slika koja se pokazuje pokraj sažetka članka.\n'
+                       + 'Npr. kao slika uz sažetak može se staviti Moj_proizvod.jpg ali ne Moj_proizvodL.jpg\n\n'); return false;"
+                >Uputa za dodavanje veće verzije slike uz već postojeću manju verziju</a>
+                </p>
+                <table class="property">
+                    <tr>
+                        <td class="propertyName">
+                            Dodane slike:
+                        </td>
+                        <td class="propertyValue">
+                            <?php foreach($this->currentProduct_Images_Descriptions as $item): ?>
+                            <table class="galleryItemWrapper" cellpadding="5">
+                                <tr>
+                                    <td style="width:10%;">
+                                        <img style="max-height:<?php echo $this->maxThumbHeight ?>px;" alt="" src="<?php echo $item[0] ?>" />
+                                    </td>
+                                    <td style="width:10%;">
+                                        <input type="submit" name="deleteImage" value="Obriši sliku"
+                                               onclick="document.getElementById('inpSelectedImage').value='<?php echo $item[2] . '|' . $item[0] ?>';" />
+                                    </td>
+                                    <td style="width:80%;">
+                                        <input type="submit" name="saveImageText" value="Spremi tekst"
+                                               onclick="document.getElementById('inpSelectedImage').value='<?php echo $item[2] . '|' . $item[0] ?>';" />                              
+                                        <textarea name="imageText<?php echo $item[2] ?>" style="width:98%; height:75px; margin-top:5px;"><?php echo $item[1] ?></textarea>
+                                        <span class="high" style="display:<?php echo $this->frontImage == $item[0] ? 'block' : 'none' ?>">
+                                            Ova slika se prikazuje pokraj opisa proizvoda.
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <?php endforeach ?>
+                            <input id="inpSelectedImage" name="inpSelectedImage" type="hidden" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Dodavanje nove slike:
+                        </td>
+                        <td class="propertyValue">
+                            <p>
+                                <input type="checkbox" name="isFrontImage" />Slika se pokazuje pokraj opisa proizvoda
+                            </p>
+                            <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                            <input name="newImage" type="file" />
+                            <input type="submit" name="saveImage" value="Spremi sliku" <?php if(!$this->saveImageEnabled) { echo "disabled='disabled'"; } ?> />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>

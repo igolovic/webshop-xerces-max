@@ -1,0 +1,296 @@
+<div class="catIndexWrapper">   
+    <!-- client side triggered messages -->
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divFirstNameErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            You haven't entered your first name.
+        </div>
+    </div>
+    <a id="aFirstNameErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divFirstNameErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divLastNameErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            You haven't entered your last name.
+        </div>
+    </div>
+    <a id="aLastNameErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divLastNameErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divAddressErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            You haven't entered your address.
+        </div>
+    </div>
+    <a id="aAddressErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divAddressErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divCityErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            You haven't entered your city.
+        </div>
+    </div>
+    <a id="aCityErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divCityErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divPostalCodeErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            You haven't entered your postal code.
+        </div>
+    </div>
+    <a id="aPostalCodeErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divPostalCodeErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divStateErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            You haven't entered your country.
+        </div>
+    </div>
+    <a id="aStateErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divStateErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divPhoneErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            You haven't entered your phone.
+        </div>
+    </div>
+    <a id="aPhoneErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divPhoneErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divEmailErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            You haven't entered your e-mail address.
+        </div>
+    </div>
+    <a id="aEmailErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divEmailErr', numberPosition:null } );"></a>
+    <p class="indexTitle">
+        Order filling
+    </p>
+    <p class="orderHeader">
+        Step 1. - products
+    </p>
+    <!-- shopping cart -->
+    <table id="cartItems" cellspacing="0" cellpadding="5">
+        <tr id="cartHeader">
+            <td class="cartLeftBorder">
+                Product code
+            </td>
+            <td>
+                Product name
+            </td>
+            <td>
+                Price (kn)
+            </td>
+            <td>
+                Quantity (pcs)
+            </td>
+            <td class="cartRightBorder">
+                Total price (kn)
+            </td>
+        </tr>
+    <?php foreach($this->cartItems as $ci): ?>
+        <tr id="tr<?php echo $this->escape($ci->getId()) ?>">
+            <td class="cartLeftBorder">
+                <?php echo $this->escape($ci->getId()) ?>
+            </td>
+            <td>
+                <?php echo $this->escape($ci->getTitle()) ?>
+            </td>
+            <td id="tdSingleCartItemPrice<?php echo $this->escape($ci->getId()) ?>">
+                <?php echo $this->escape($ci->getPrice()) ?>
+            </td>
+            <td>
+                <?php echo $this->escape($ci->getQuantity()) ?>
+            </td>
+            <td class="cartRightBorder" id="tdSingleCartItemPriceTotal<?php echo $this->escape($ci->getId()) ?>">
+                <?php echo $this->escape($ci->getTotalPrice()) ?>
+            </td>
+        </tr>
+    <?php endforeach ?>
+        <tr id="cartFooter">
+            <td class="cartLeftBorder">
+                Total
+            </td>
+            <td>&nbsp;
+                
+            </td>
+            <td>&nbsp;
+                
+            </td>
+            <td>
+                <span id="spanCartItemCount2"><?php echo $this->escape($this->cartItemCount) ?></span>
+            </td>
+            <td class="cartRightBorder">
+                <span id="spanCartValueTotal2"><?php echo $this->escape($this->cartValueTotal) ?></span>
+            </td>
+        </tr>
+    </table>
+    <p class="sendOrderContainer">
+        <input type="button" value="Change the order" onclick="document.location = '/lcm-cart/index'" />
+    </p>
+    <p class="orderHeader">
+        Step 2. - personal information
+    </p>
+    <!-- personal info -->
+    <table class="tContact" cellpadding="5">
+        <tr>
+            <td style="text-align:left" colspan="2">
+                If you're already our registered buyer write here your customer ID, click "Fill customer data" and proceed to step 3.:
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left" colspan="2">
+                <form action="/lcm-order/index" method="post">
+                    <input type="text" title="Customer ID" maxlength="50" name="inpExistingCustomerId" id="inpExistingCustomerId" />
+                    &nbsp;
+                    <input type="submit" value="Fill customer data" onclick="document.location = '/lcm-order/index" />
+                </form>
+            </td>
+        </tr>        
+        <tr>
+            <td style="text-align:left" colspan="2">
+                If you're not already our registered buyer fill in the fields below and proceed to step 3.:
+            </td>
+        </tr>        
+        <tr>
+            <td style="text-align:right; width:150px;">
+                <strong>* First name:</strong>
+            </td>
+            <td>
+                <input type="text" title="First name" maxlength="50" name="inpFirstName" id="inpFirstName" value="<?php echo $this->escape($this->firstName) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Last name:</strong>
+            </td>
+            <td>
+                <input type="text" title="Last name" maxlength="50" name="inpLastName" id="inpLastName" value="<?php echo $this->escape($this->lastName) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                Company:
+            </td>
+            <td>
+                <input type="text" title="Company" maxlength="50" name="inpCompany" id="inpCompany" value="<?php echo $this->escape($this->company) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Address:</strong>
+            </td>
+            <td>
+                <input type="text" title="Address" maxlength="50" name="inpAddress" id="inpAddress" value="<?php echo $this->escape($this->address) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* City/town:</strong>
+            </td>
+            <td>
+                <input type="text" title="City/town" maxlength="50" name="inpCity" id="inpCity" value="<?php echo $this->escape($this->city) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Postal code:</strong>
+            </td>
+            <td>
+                <input type="text" title="Postal code" maxlength="50" name="inpPostalCode" id="inpPostalCode" value="<?php echo $this->escape($this->postalCode) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Country:</strong>
+            </td>
+            <td>
+                <input type="text" title="Country" maxlength="50" name="inpState" id="inpState" value="<?php echo $this->escape($this->state) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Phone:</strong>
+            </td>
+            <td>
+                <input type="text" title="Phone" maxlength="50" name="inpPhone" id="inpPhone" value="<?php echo $this->escape($this->phone) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                Fax:
+            </td>
+            <td>
+                <input type="text" title="Fax" maxlength="50" name="inpFax" id="inpFax" value="<?php echo $this->escape($this->fax) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* E-mail:</strong>
+            </td>
+            <td>
+                <input type="text" title="E-mail address" maxlength="50" name="inpEmail" id="inpEmail" value="<?php echo $this->escape($this->email) ?>" />
+            </td>
+        </tr>
+    </table>
+    * Required information is marked bold.
+    <p class="orderHeader">
+        Step 3. - payment
+    </p>
+    Please choose your payment method:
+    <select id="selPaymentMethod">
+        <?php foreach($this->paymentMethods as $pm): ?>
+            <option value="<?php echo $this->escape($pm['pmId']) ?>"><?php echo $this->escape($pm['pmTitle']) ?></option>
+        <?php endforeach ?>
+    </select>
+    <br />
+    <br />
+    <p>
+        <input type="button" value="Send order"
+            onclick="sendForm(
+            '/lcm-order/new-order',
+            [
+                ['FirstName', document.getElementById('inpFirstName').value],
+                ['LastName', document.getElementById('inpLastName').value],
+                ['Address', document.getElementById('inpAddress').value],
+                ['City', document.getElementById('inpCity').value],
+                ['PostalCode', document.getElementById('inpPostalCode').value],
+                ['State', document.getElementById('inpState').value],
+                ['Phone', document.getElementById('inpPhone').value],
+                ['Email', document.getElementById('inpEmail').value],
+                ['PaymentMethodId', document.getElementById('selPaymentMethod').options[document.getElementById('selPaymentMethod').selectedIndex].value]
+            ],
+            [
+                ['Company', document.getElementById('inpCompany').value],
+                ['Fax', document.getElementById('inpFax').value],
+                ['ExistingCustomerId', document.getElementById('inpExistingCustomerId').value]
+            ],
+            true
+            );" style="width:100px" />
+    </p>
+    <!-- server side triggered messages -->
+    <div id="divOk" style="display:none;" class="txtGreen">
+        Your order had been sent, thank you.
+        <div>
+            Please write down the following information which will be used for every future communication regarding your order:
+        </div>
+        <div>
+            Your client ID: <span id="spanClientId" style="font-weight:bold;"></span>    
+        </div>
+        <div>
+            Order ID: <span id="spanOrderId" style="font-weight:bold;"></span>    
+        </div>
+    </div>
+    <div id="divErr" style="display:none;" class="txtRed">
+        Your order hasn't been send, please verify that you entered all the required information.
+    </div>
+</div>

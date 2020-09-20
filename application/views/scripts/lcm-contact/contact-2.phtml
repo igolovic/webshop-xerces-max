@@ -1,0 +1,71 @@
+<div class="contentWrapper">
+    <div class="indexTitle">
+        Contact form
+    </div>
+    <form action="/lcm-contact" method="post">
+        <p>
+            1. Your name
+        </p>
+        <p>
+            <input type="text" name="senderName" maxlength="40" style="width:250px;" />
+        </p>
+        <p>
+            2. Your e-mail address
+        </p>
+        <p>
+            <input type="text" name="senderAddress" maxlength="40" style="width:250px;" /> 
+        </p>
+        <p>
+            2. Message
+        </p>
+        <p>
+            <textarea name="message" rows="5" cols="10" style="width:500px;"></textarea> 
+        </p>
+        <p>
+            4. Security check
+        </p>
+        <p>
+            Enter the text from the image below.
+        </p>
+        <p style="text-align:left;">
+            <?php echo $this->captchaImage ?>
+        </p>
+        <p>
+            <input type="text" name="captcha[input]" maxlength="20" style="width:250px;" />
+        </p>
+        <p>
+            <input type="submit" value="Send" />
+        </p>
+        <div class="error">
+            <?php if($this->messageError): ?>
+                You have to write message and it's length may not be more than 4000 characters.
+            <?php endif ?>
+        </div>        
+        <div class="error">
+            <?php if($this->senderNameError): ?>
+                You haven't entered your name.
+            <?php endif ?>
+        </div>
+        <div class="error">
+            <?php if($this->senderAddressError): ?>
+                You haven't entered your e-mail address.
+            <?php endif ?>
+        </div>
+        <div class="error">
+            <?php if($this->captchaError): ?>
+                You have entered wrong captcha text, please try again.
+            <?php endif ?>
+        </div>
+        <div class="error">
+            <?php if($this->sendMailError): ?>
+                Error while sending e-mail message.
+            <?php endif ?>
+        </div>
+        <div class="ok">
+            <?php if($this->ok): ?>
+                E-mail message was successfully sent.
+            <?php endif ?>
+        </div>
+        <input type="hidden" name="captcha[id]" value="<?php echo $this->escape($this->captchaMD5) ?>" />
+    </form>
+</div>

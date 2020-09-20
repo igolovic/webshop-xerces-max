@@ -1,0 +1,25 @@
+<div class="contentWrapper">
+	<p class="indexTitle">
+		Sitemap
+	</p>
+	<ul>
+		<?php foreach ($this->menuItems as $item): ?>
+		<li>
+		    <a href="<?php echo $this->escape($item->getUrl()) ?>">
+			<?php echo $this->escape($item->getTitle()) ?>
+		    </a>
+		    <?php if(count($item->getChildren()) > 0): ?>
+		    <ul>
+		    <?php foreach ($item->getChildren() as $child): ?>
+			<li>
+			    <a href="<?php echo $this->escape($child->getUrl()) ?>">
+				<?php echo $this->escape($child->getTitle()) ?>
+			    </a>
+			</li>
+		    <?php endforeach ?>
+		    </ul>
+		    <?php endif ?>
+		</li>
+		<?php endforeach ?>
+	</ul>
+</div>

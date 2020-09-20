@@ -1,0 +1,93 @@
+<div class="contentWrapper">
+    <!-- breadcrumb -->
+    <p>
+        <?php foreach($this->breadCrumb as $bci): ?>
+        <a class="breadCrumb" href="/<?php echo $this->escape($bci['path']) ?>"> &gt; <?php echo $this->escape($bci['title']) ?></a>
+        <?php endforeach ?>
+    </p>
+    <!-- product details -->
+    <div class="indexTitle">   
+        <?php echo $this->escape($this->title) ?>
+    </div>
+    <p>
+        Product ID: <strong><?php echo $this->id ?></strong>
+    </p>
+    <p>
+        Price (tax included): <strong><?php echo $this->price ?> kn</strong>
+    </p>
+    <p>
+        <?php echo $this->text ?>
+    </p>
+    <!-- display the extra information for the product -->
+    <?php if(count($this->extraInfoList) > 0): ?>
+    <?php foreach($this->extraInfoList as $eii): ?>
+    <p class="highlight2">
+        <?php echo $eii; ?>
+    </p>
+    <?php endforeach ?>
+    <?php endif ?>
+    <!-- if there are images for this product-->
+    <?php if(count($this->imageList) > 0): ?>
+    <div class="highslide-gallery">
+        <div style="text-align:center">
+            <?php for($count=0; $count<count($this->imageList); $count++): ?>
+                <?php if(isset($this->imageLList[$count])): ?>
+                <div style="display:inline-block; text-align:center;">
+                    <a href="<?php echo $this->escape($this->imageLList[$count]) ?>" class="highslide" onclick="return hs.expand(this)" >
+                        <img style="max-height:<?php echo $this->maxThumbHeight ?>px;" alt="" src="<?php echo $this->escape($this->imageList[$count]) ?>" />
+                    </a>
+                    <br />
+                    <?php if(isset($this->imageDescriptionList[$count]) && strlen($this->imageDescriptionList[$count]) > 0): ?>
+                    <span onmouseover="ddrivetip('<?php echo $this->escape($this->imageDescriptionList[$count]) ?>')" onmouseout="hideddrivetip();">
+                        Description
+                    </span>
+                    <?php else: ?>
+                    <span>
+                        &nbsp;
+                    </span>                    
+                    <?php endif ?>
+                </div>
+                <?php else: ?>
+                <div style="display:inline-block; text-align:center;">
+                    <img style="max-height:<?php echo $this->maxThumbHeight ?>px;" alt="" src="<?php echo $this->imageList[$count] ?>" />
+                    <br />
+                    <?php if(strlen($this->imageDescriptionList[$count]) > 0): ?>
+                    <span onmouseover="ddrivetip('<?php echo $this->escape($this->imageDescriptionList[$count]) ?>')" onmouseout="hideddrivetip();">
+                        Description
+                    </span>
+                    <?php else: ?>
+                    <span>
+                        &nbsp;
+                    </span>                    
+                    <?php endif ?>
+                </div>
+                <?php endif ?>
+            <?php endfor ?>
+        </div>
+    </div>
+    <?php endif ?>
+    <!-- if there are images for this product -->
+    <?php if($this->showCart == 1): ?>
+    <p>
+        <form id="divQuantity<?php echo $this->id ?>" action="post">                        
+            Quantity:&nbsp;&nbsp;
+            <input class="cart" type="text" name="inpQuantity<?php echo $this->escape($this->id) ?>" id="inpQuantity<?php echo $this->escape($this->id) ?>" />
+            &nbsp;&nbsp;
+            <a href="#" onclick="addToCart(<?php echo $this->escape($this->id) ?>, document.getElementById('inpQuantity<?php echo $this->escape($this->id) ?>').value); return false;">
+                <img alt="" src="/images/cart.png" />&nbsp;&nbsp;add to cart
+            </a>
+        </form>
+    </p>
+    <?php endif ?>
+    <!-- if there are linked products for this product -->
+    <?php if(count($this->linkedProductNameList) > 0): ?>
+    <p>
+        You might also be interested in:
+    </p>
+    <?php foreach($this->linkedProductNameList as $lpn): ?>
+    <p>
+         <a href="<?php echo $this->cms->title2path($lpn) ?>"><?php echo $lpn ?></a>
+    </p>
+    <?php endforeach ?>
+    <?php endif ?>
+</div>

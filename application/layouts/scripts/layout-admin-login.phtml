@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="www.ivan-golovic.from.hr" />
+    <title>Administracija</title>
+    <link rel="stylesheet" type="text/css" href="/tooltip.css" />
+    <link rel="stylesheet" type="text/css" href="/lcm.css" />
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide.css" />
+    <link rel="shortcut icon" href="/images/lcm.png" />     
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide-ie6.css" />
+    <![endif]-->
+    <script type="text/javascript" src="/lcm.js"></script>
+    <script type="text/javascript" src="/highslide/highslide-full.packed.js"></script>
+    <script type="text/javascript" src="/highslide/highslide-conf.js"></script>
+    <script type="text/javascript" src="/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+	<script>
+		window.onload = function()
+		{
+			document.getElementById('username').focus();
+		}
+    </script>
+	<form action="/lcm-admin-login" method="post">
+        <table class="mainAdminContainer">
+            <tr>
+                <td>
+                <div style="border:1px silver solid; padding:5px; margin:3px 3px 0px 3px;">
+                    <div class="title">
+                    <span style="color:#777777; font-style:italic;">Lightweight Content Management</span>
+                    </div>
+                    <br />
+                    <center>
+                        <table cellpadding="0" cellspacing="5" style="width:350px;">
+                            <tr>
+                                <td style="width:50%;">
+                                    Korisničko ime: 
+                                </td>			
+                                <td>
+                                    <input type="text" id="username" name="username" />
+                                </td>                        
+                           </tr>
+                           <tr>
+                                <td>
+                                    Lozinka: 
+                                </td>
+                                <td>
+                                    <input type="password" name="password" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align:right;">
+                                    <input type="submit" name="login" value="Pošalji" />
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                </div>
+                </td>
+            </tr>
+        </table>
+	</form>       
+</body>
+</html>

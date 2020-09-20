@@ -1,0 +1,296 @@
+<div class="catIndexWrapper">
+    <!-- client side triggered messages -->
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divFirstNameErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            Niste unijeli ime.
+        </div>
+    </div>
+    <a id="aFirstNameErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divFirstNameErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divLastNameErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            Niste unijeli prezime.
+        </div>
+    </div>
+    <a id="aLastNameErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divLastNameErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divAddressErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            Niste unijeli adresu.
+        </div>
+    </div>
+    <a id="aAddressErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divAddressErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divCityErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            Niste unijeli grad/mjesto.
+        </div>
+    </div>
+    <a id="aCityErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divCityErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divPostalCodeErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            Niste unijeli poštanski broj.
+        </div>
+    </div>
+    <a id="aPostalCodeErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divPostalCodeErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divStateErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            Niste unijeli državu.
+        </div>
+    </div>
+    <a id="aStateErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divStateErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divPhoneErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            Niste unijeli telefon.
+        </div>
+    </div>
+    <a id="aPhoneErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divPhoneErr', numberPosition:null } );"></a>
+    <div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divEmailErr">
+        <div class="highslide-header">
+            <a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+        </div>
+        <div class="highslide-body">
+            Niste unijeli e-mail.
+        </div>
+    </div>
+    <a id="aEmailErr" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divEmailErr', numberPosition:null } );"></a>
+    <p class="indexTitle">
+        Ispunjavanje narudžbe
+    </p>
+    <p class="orderHeader">
+        Korak 1. - proizvodi
+    </p>
+    <!-- shopping cart -->
+    <table id="cartItems" cellspacing="0" cellpadding="5">
+        <tr id="cartHeader">
+            <td class="cartLeftBorder">
+                Šifra proizvoda
+            </td>
+            <td>
+                Naziv proizvoda
+            </td>
+            <td>
+                Cijena po komadu (kn)
+            </td>
+            <td>
+                Količina (kom)
+            </td>
+            <td class="cartRightBorder">
+                Ukupna cijena (kn)
+            </td>
+        </tr>
+    <?php foreach($this->cartItems as $ci): ?>
+        <tr id="tr<?php echo $this->escape($ci->getId()) ?>">
+            <td class="cartLeftBorder">
+                <?php echo $this->escape($ci->getId()) ?>
+            </td>
+            <td>
+                <?php echo $this->escape($ci->getTitle()) ?>
+            </td>
+            <td id="tdSingleCartItemPrice<?php echo $this->escape($ci->getId()) ?>">
+                <?php echo $this->escape($ci->getPrice()) ?>
+            </td>
+            <td>
+                <?php echo $this->escape($ci->getQuantity()) ?>
+            </td>
+            <td class="cartRightBorder" id="tdSingleCartItemPriceTotal<?php echo $this->escape($ci->getId()) ?>">
+                <?php echo $this->escape($ci->getTotalPrice()) ?>
+            </td>
+        </tr>
+    <?php endforeach ?>
+        <tr id="cartFooter">
+            <td class="cartLeftBorder">
+                Ukupno
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <span id="spanCartItemCount2"><?php echo $this->escape($this->cartItemCount) ?></span>
+            </td>
+            <td class="cartRightBorder">
+                <span id="spanCartValueTotal2"><?php echo $this->escape($this->cartValueTotal) ?></span>
+            </td>
+        </tr>
+    </table>
+    <p class="sendOrderContainer">
+        <input type="button" value="Promijeni narudžbu" onclick="document.location = '/lcm-cart/index'" />
+    </p>
+    <p class="orderHeader">
+        Korak 2. - osobni podaci
+    </p>
+    <!-- personal info -->
+    <table class="tContact" cellpadding="5">
+        <tr>
+            <td style="text-align:left" colspan="2">
+                Ako ste već naš registrirani kupac ovdje upišite svoj korisnički broj, kliknite "Popuni korisničke podatke" i pređite na korak 3.:
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left" colspan="2">
+                <form action="/lcm-order/index" method="post">
+                    <input type="text" title="Korisnički broj" maxlength="50" name="inpExistingCustomerId" id="inpExistingCustomerId" value="<?php echo htmlspecialchars($this->id) ?>" />
+                    &nbsp;
+                    <input type="submit" value="Popuni korisničke podatke" onclick="document.location = '/lcm-order/index'" />
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left" colspan="2">
+                Ako niste registrirani kupac popunite dolje navedena polja i pređite na korak 3.:
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right; width:100px;">
+                <strong>* Ime:</strong>
+            </td>
+            <td>
+                <input type="text" title="Ime" maxlength="50" name="inpFirstName" id="inpFirstName" value="<?php echo $this->escape($this->firstName) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Prezime:</strong>
+            </td>
+            <td>
+                <input type="text" title="Prezime" maxlength="50" name="inpLastName" id="inpLastName" value="<?php echo $this->escape($this->lastName) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                Tvrtka:
+            </td>
+            <td>
+                <input type="text" title="Tvrtka" maxlength="50" name="inpCompany" id="inpCompany" value="<?php echo $this->escape($this->company) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Adresa:</strong>
+            </td>
+            <td>
+                <input type="text" title="Adresa" maxlength="50" name="inpAddress" id="inpAddress" value="<?php echo $this->escape($this->address) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Grad/mjesto:</strong>
+            </td>
+            <td>
+                <input type="text" title="Grad/mjesto" maxlength="50" name="inpCity" id="inpCity" value="<?php echo $this->escape($this->city) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Poštanski broj:</strong>
+            </td>
+            <td>
+                <input type="text" title="Poštanski broj" maxlength="50" name="inpPostalCode" id="inpPostalCode" value="<?php echo $this->escape($this->postalCode) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Država:</strong>
+            </td>
+            <td>
+                <input type="text" title="Država" maxlength="50" name="inpState" id="inpState" value="<?php echo $this->escape($this->state) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* Telefon:</strong>
+            </td>
+            <td>
+                <input type="text" title="Telefonski broj" maxlength="50" name="inpPhone" id="inpPhone" value="<?php echo $this->escape($this->phone) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                Telefaks:
+            </td>
+            <td>
+                <input type="text" title="Telefaks" maxlength="50" name="inpFax" id="inpFax" value="<?php echo $this->escape($this->fax) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">
+                <strong>* E-mail:</strong>
+            </td>
+            <td>
+                <input type="text" title="E-mail adresa" maxlength="50" name="inpEmail" id="inpEmail" value="<?php echo $this->escape($this->email) ?>" />
+            </td>
+        </tr>
+    </table>
+    * Obavezni podaci označni su podebljano.
+    <p class="orderHeader">
+        Korak 3. - plaćanje
+    </p>
+    Odaberite način plaćanja:
+    <select id="selPaymentMethod">
+        <?php foreach($this->paymentMethods as $pm): ?>
+            <option value="<?php echo $this->escape($pm['pmId']) ?>"><?php echo $this->escape($pm['pmTitle']) ?></option>
+        <?php endforeach ?>
+    </select>
+    <br />
+    <br />
+    <p>
+        <input type="button" value="Pošalji narudžbu"
+            onclick="sendForm(
+            '/lcm-order/new-order',
+            [
+                ['FirstName', document.getElementById('inpFirstName').value],
+                ['LastName', document.getElementById('inpLastName').value],
+                ['Address', document.getElementById('inpAddress').value],
+                ['City', document.getElementById('inpCity').value],
+                ['PostalCode', document.getElementById('inpPostalCode').value],
+                ['State', document.getElementById('inpState').value],
+                ['Phone', document.getElementById('inpPhone').value],
+                ['Email', document.getElementById('inpEmail').value],
+                ['PaymentMethodId', document.getElementById('selPaymentMethod').options[document.getElementById('selPaymentMethod').selectedIndex].value]
+            ],
+            [
+                ['Company', document.getElementById('inpCompany').value],
+                ['Fax', document.getElementById('inpFax').value],
+                ['ExistingCustomerId', document.getElementById('inpExistingCustomerId').value]
+            ],
+            true
+            );" style="width:100px" />
+    </p>
+    <!-- server side triggered messages -->
+    <div id="divOk" style="display:none;" class="txtGreen">
+        Vaša narudžba je poslana, hvala.
+        <div>
+            Molimo Vas zapišite slijedeće podatke kako bi ih mogli koristiti kod svake buduće komunikacije vezane uz narudžbu:
+        </div>
+        <div>
+            Vaš korisnički broj: <span id="spanClientId" style="font-weight:bold;"></span>    
+        </div>
+        <div>
+            Broj narudžbe: <span id="spanOrderId" style="font-weight:bold;"></span>    
+        </div>
+    </div>
+    <div id="divErr" style="display:none;" class="txtRed">
+        Narudžba nije poslana, provjerite da li ste unijeli sve potrebne podatke.
+    </div>
+</div>

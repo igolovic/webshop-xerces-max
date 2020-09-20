@@ -1,0 +1,39 @@
+<div class="contentWrapper">
+    <!-- breadcrumb -->
+    <p>
+        <?php foreach($this->breadCrumb as $bci): ?>
+            <a class="breadCrumb" href="/<?php echo $this->escape($bci['path']) ?>"> &gt; <?php echo $this->escape($bci['title']) ?></a>
+        <?php endforeach ?>
+    </p>
+    <!-- information about current group -->
+    <p style="padding:5px">
+        <?php echo $this->groupItem->getDescription() ?>
+    </p>
+    <?php $i = 0; foreach($this->articleItems as $ai): ?>
+    <?php if($i < $this->longIntroCount): ?>
+	<hr />
+    <table>
+        <tr>            
+            <td>
+	            <?php if($ai->getFrontImage() != ''): ?>
+                <img class="indexImage" alt="" src="<?php echo $this->escape($ai->getFrontImage()) ?>" />
+				<?php else: ?>
+                &nbsp;
+                <?php endif ?>
+            </td>
+            <td>
+                <div class="indexTitle">
+                    <a href="<?php echo $this->cms->title2path($this->groupItem->getTitle() . '/' . $ai->getTitle()) ?>"><?php echo $ai->getTitle() ?></a>
+                </div>                
+                <div>
+                    <?php echo $ai->getDescription() ?>
+                </div>
+                <div>
+                    <a href="<?php echo $this->cms->title2path($this->groupItem->getTitle() . '/' . $ai->getTitle()) ?>"> ...more details</a>
+                </div>            
+            </td>
+        </tr>
+    </table>
+    <?php endif ?>
+    <?php $i++; endforeach; ?>    
+</div>

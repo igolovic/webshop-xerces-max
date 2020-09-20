@@ -1,0 +1,75 @@
+<div class="contentWrapper">
+    <!-- breadcrumb -->
+    <p>
+        <?php foreach($this->breadCrumb as $bci): ?>
+            <a class="breadCrumb" href="/<?php echo $this->escape($bci['path']) ?>"> &gt; <?php echo $this->escape($bci['title']) ?></a>
+        <?php endforeach ?>
+    </p>
+    <!-- article details -->
+    <div class="indexTitle">
+        <?php echo  $this->escape($this->title) ?>
+    </div>
+    <div class="publishDate">
+        <?php
+            if($this->publishDate):
+                $timestamp = strtotime($this->publishDate);
+                $time = date('d. F. Y.', $timestamp);
+                echo 'Published: ' . $time;
+            endif
+        ?>
+    </div>
+    <p>
+        <?php echo $this->text ?>
+    </p>
+    <!-- if there are images with this article -->
+    <?php if(count($this->imageList) > 0): ?>
+        <div class="highslide-gallery">
+            <div style="text-align:center">
+                <?php for($count=0; $count<count($this->imageList); $count++): ?>
+                    <?php if(isset($this->imageLList[$count])): ?>
+                    <div style="display:inline-block; text-align:center;">
+                        <a href="<?php echo $this->escape($this->imageLList[$count]) ?>" class="highslide" onclick="return hs.expand(this)" >
+                            <img style="max-height:<?php echo $this->maxThumbHeight ?>px;" alt="" src="<?php echo $this->escape($this->imageList[$count]) ?>" />
+                        </a>
+                        <br />
+                        <?php if(isset($this->imageDescriptionList[$count]) && strlen($this->imageDescriptionList[$count]) > 0): ?>
+                        <span onmouseover="ddrivetip('<?php echo $this->escape($this->imageDescriptionList[$count]) ?>')" onmouseout="hideddrivetip();">
+                            Description
+                        </span>
+                        <?php else: ?>
+                        <span>
+                            &nbsp;
+                        </span>
+                        <?php endif ?>
+                    </div>
+                    <?php else: ?>
+                    <div style="display:inline-block; text-align:center;">
+                        <img style="max-height:<?php echo $this->maxThumbHeight ?>px;" alt="" src="<?php echo $this->escape($this->imageList[$count]) ?>" />
+                        <br />
+                        <?php if(strlen($this->imageDescriptionList[$count]) > 0): ?>
+                        <span onmouseover="ddrivetip('<?php echo $this->escape($this->imageDescriptionList[$count]) ?>')" onmouseout="hideddrivetip();">
+                            Description
+                        </span>
+                        <?php else: ?>
+                        <span>
+                            &nbsp;
+                        </span>     
+                        <?php endif ?>
+                    </div>
+                    <?php endif ?>
+                <?php endfor ?>
+            </div>
+        </div>
+    <?php endif ?>
+    <!-- if there are linked articles for this article -->
+    <?php if(count($this->linkedArticleNameList) > 0): ?>
+    <p>
+        You might also be interested in these articles:
+    </p>
+    <?php foreach($this->linkedArticleNameList as $lpn): ?>
+    <p>
+        <a href="<?php echo $this->cms->title2path($lpn) ?>"><?php echo $lpn ?></a>
+    </p>
+    <?php endforeach ?>
+    <?php endif ?>
+</div>

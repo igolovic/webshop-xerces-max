@@ -1,0 +1,134 @@
+<form id="form" action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
+    <table class="workspace" cellpadding="5">
+        <tr>
+            <td colspan="2" class="title workspaceCell" style="border-color:silver;">
+                Trenutno odabrani modul: <span class="high">Grupe članaka</span>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="4" class="workspaceCell" style="width:15%; border-color:silver;">
+                Odaberite grupu koju želite uređivati:
+                <br />
+                <br />
+                <?php foreach($this->articleGroupItems as $agi): ?>
+                <a class="delete" href="/lcm-admin-article-group/delete/<?php echo $agi->getId() ?>" onclick="return confirm('Da li ste sigurni da želite obrisati grupu?')" title="Obriši članak">X</a>
+                <a style="border-color:#222222;" href="<?php echo '/lcm-admin-article-group/' . $agi->getId() ?>"><?php echo $agi->getTitle() ?></a>
+                <br />
+                <br />
+                <?php endforeach ?>
+            </td>
+            <td class="workspaceCell" style="width:85%; border-color:silver;">
+                <table style="width:100%;
+                    <?php echo ($this->hasMessage) ? 'display:block;' : 'display:none;'; 
+                       echo ($this->isErr) ? 'background-color:#FFFFCC; border:1px solid #CC0000; color:#CC0000;' : 'background-color:#F0FFF0; border:1px solid #00FF00; color:#00FF00;';
+                    ?> "
+                >
+                    <tr>
+                        <td>
+                            <?php echo $this->message; ?>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:50%; text-align:left;">
+                            <span class="title">
+                                Trenutno odabrana grupa: <span class="high"><?php echo $this->selectedTitle ?></span>
+                            </span>
+                        </td>
+                        <td style="width:50%; text-align:right;">
+                            <input type="button" value="Dodavanje nove grupe članaka" onclick="document.location='/lcm-admin-article-group/'" />                       
+                            <input type="submit" value="Spremi promjene" name="save" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- tr containing general properties of the group -->        
+        <tr>
+            <td class="workspaceCell" style="width:85%; border-color:silver;">
+                <span class="title">
+                    Opće postavke grupe
+                </span>
+                <br />
+                <br />
+                <table class="property">
+                    <tr>
+                        <td class="propertyName">
+                            ID grupe:
+                        </td>
+                        <td class="propertyValue">
+                            <input name="articleGroupId" type="text" maxlength="256" class="disabled" readonly="true" value="<?php echo $this->currentArticle_GroupId ?>" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Roditeljska grupa:
+                        </td>
+                        <td class="propertyValue">
+                            <select name="parentId" <?php echo $this->parentSelectEnabled ? '' : "class='disabled' disabled='disabled'" ?>>
+                                <option value="0"></option>
+                                <?php foreach($this->articleGroupItems as $item): ?>
+                                <option value="<?php echo $item->getId() ?>" <?php if($item->getTitle() == $this->selectedParentTitle) { echo "selected='selected'"; } ?>>
+                                    <?php echo $item->getTitle() ?>
+                                </option>
+                                <?php endforeach ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Redoslijed unutar roditeljske grupe:
+                        </td>
+                        <td class="propertyValue">
+                            <input name="orderInsideParentGroup" type="text" maxlength="256" class="disabled" readonly="true" value="<?php echo $this->selectedOrder ?>" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- tr containing textual properties of the group -->
+        <tr>
+            <td class="workspaceCell" style="border-color:silver;">
+                <span class="title">
+                    Tekstualne postavke grupe
+                </span>
+                <br />
+                <br />
+                <table class="property">
+                    <tr>
+                        <td class="propertyName">
+                            Jezik:
+                        </td>
+                        <td class="propertyValue">
+                                <select name="languageId" onchange="document.getElementById('form').submit()">
+                                    <?php foreach($this->languageItems as $item): ?>
+                                    <option <?php if($item->getId() == $this->selectedLanguageId) { echo "selected='selected'"; } ?> value="<?php echo $item->getId() ?>">
+                                        <?php echo $item->getTitle() ?>
+                                    </option>
+                                    <?php endforeach ?>
+                                </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Naslov:
+                        </td>
+                        <td class="propertyValue">
+                            <input name="title" type="text" maxlength="256" value="<?php echo $this->currentArticle_Title ?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="propertyName">
+                            Opis grupe:
+                        </td>
+                        <td class="propertyValue">
+                            <textarea name="description" style="width:100%; height:200px;"><?php echo $this->currentArticle_Description ?></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,11 @@
+#dhtmltooltip{
+    position: absolute;
+    width: 150px;
+    border: 1px solid silver;
+    padding: 2px;
+    background-color: white;
+    color:#414141;
+    visibility: hidden;
+    z-index: 100;
+    text-align:left;
+}

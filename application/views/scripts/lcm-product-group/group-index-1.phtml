@@ -1,0 +1,34 @@
+<div class="contentWrapper">
+    <!-- breadcrumb -->
+    <p>
+        <?php foreach($this->breadCrumb as $bci): ?>
+            <a class="breadCrumb" href="/<?php echo $this->escape($bci['path']) ?>"> &gt; <?php echo $this->escape($bci['title']) ?></a>
+        <?php endforeach ?>
+    </p>
+    <!-- information about current group -->
+    <p style="padding:5px">
+        <?php echo $this->groupItem->getDescription() ?>
+    </p>
+    <?php foreach($this->groupItems as $gi): ?>
+    <table>
+        <tr>
+            <td>
+                <a class="indexGroupTitle" href="<?php echo strtolower(str_replace(array(' ', 'š', 'đ', 'č', 'ć', 'ž'), array('-', 's', 'd', 'c', 'c', 'z'), $this->escape($this->groupItem->getTitle()) . '/' . $this->escape($gi->getTitle()))) ?>">&gt; <?php echo $this->escape($gi->getTitle()) ?></a>
+                <!-- as for now keep the following section commented because of consistency with
+                     articles and wrong paths in href (although functional)
+                -->
+                <!-- 
+                <?php //foreach($gi->getChildren() as $giChild): ?>
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="indexGroupTitle" href="<?php //echo strtolower(str_replace(array(' ', 'š', 'đ', 'č', 'ć', 'ž'), array('-', 's', 'd', 'c', 'c', 'z'), $this->escape($this->groupItem->getTitle()) . '/' . $this->escape($giChild->getTitle()))) ?>">
+                        - <?php //echo $this->escape($giChild->getTitle()) ?>
+                    </a>
+                <?php //endforeach ?>
+                -->
+                <br />
+            </td>
+        </tr>
+    </table>
+    <?php endforeach ?>
+</div>

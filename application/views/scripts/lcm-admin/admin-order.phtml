@@ -1,0 +1,130 @@
+<form id="form" action="/lcm-admin-order/" method="post">
+    <table class="workspace" cellpadding="5">
+        <tr>
+            <td colspan="2" class="title workspaceCell" style="border-color:silver;">
+                Trenutno odabrani modul: <span class="high">Narudžbe</span>
+            </td>
+        </tr>
+		<tr>
+            <td class="workspaceCell" style="border-color:silver;">
+                <span class="title">
+                    Evidentirane narudžbe:
+                </span>       
+                <?php if($this->orderItemsCount > 0): ?>
+                    <table class="orders" cellpadding="3" cellspacing="3">
+						<tr>
+                        	<td class="header">Šifra narudžbe</td>
+                        	<td class="header">Šifra klijenta</td>
+                        	<td class="header">Ime i prezime klijenta</td>
+                        	<td class="header">Tvrtka</td>                            
+                        	<td class="header">Adresa klijenta</td>
+                        	<td class="header">Kontakt podaci klijenta</td>                            
+                        	<td class="header">Datum narudžbe</td>
+                        	<td class="header">Tip plaćanja</td>
+                        </tr>
+                        <tr>
+                        	<td colspan="8" style="background-color:transparent;">
+                            	<hr />
+                            </td>
+                        </tr>
+                        <?php foreach($this->orderItems as $oi): ?>
+                        <tr>
+                            <td>
+                                <?php echo $oi->getId() ?>
+                            </td>
+                            <td>     
+                                <?php echo $oi->getClientId() ?>
+                            </td>
+                            <td>                                
+                                <?php echo $oi->getClientFirstNameLastName() ?>
+                            </td>
+                            <td>                                
+                                <?php echo $oi->getClientCompany() ?>
+                            </td>
+                            <td>                                
+                                <?php echo $oi->getClientDeliveryInfo() ?>
+                            </td>                                
+                            <td>                                
+                                <?php echo $oi->getClientContactInfo() ?>
+                            </td>                                                    
+                            <td>
+                                <?php echo $oi->getOrderDate()?>
+                            </td>
+                            <td>
+                                <?php echo $oi->getOrderPaymentMethodText()?>                                    
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td colspan="8">
+                            	<table class="orderRows" cellpadding="3" cellspacing="3">
+                                	<tr>
+                                    	<td class="header">
+                                        	Šifra proizvoda
+                                        </td>
+                                    	<td class="header">
+                                        	Naziv proizvoda
+                                        </td>                                                    
+                                    	<td class="header">
+                                        	Količina
+                                        </td>
+                                    	<td class="header">
+                                        	Cijena
+                                        </td>                                                      
+                                  		<td class="header">
+                                        	Vrijednost
+                                        </td>                                                                                
+                                    </tr>
+                            		<?php foreach($oi->getOrderRowItems() as $orderRowItem): ?>
+                                	<tr>
+                                    	<td>
+                                            <?php echo $orderRowItem->getProductId() ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $orderRowItem->getProductName() ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $orderRowItem->getProductQuantity() ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $orderRowItem->getProductPrice() ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $orderRowItem->getProductOrderValue() ?>
+                                        </td>                                                                                
+                                    </tr>
+                                	<?php endforeach ?>
+                                    <tr>
+                                    	<td colspan="5">
+                                        	<hr />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    	<td>&nbsp;</td>
+                                    	<td>&nbsp;</td>
+                                    	<td>&nbsp;</td>
+                                    	<td>&nbsp;</td>                                                                                                                        
+                                    	<td>
+                                        	<?php echo $oi->getOrderTotalValue() ?>
+                                        </td>
+                                    </tr>
+                            	</table>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td colspan="8" style="text-align:right;">
+                            	<input type="submit" name="deleteOrder" value="Obriši narudžbu" onclick="var confirmation = confirm('Da li ste sigurni da želite obrisati narudžbu?'); if(confirmation == true){document.getElementById('inpOrderId').value='<?php echo $oi->getId() ?>';}" />
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td colspan="8" style="background-color:transparent;">
+                            	<hr />
+                            </td>
+                        </tr>                    
+                        <?php endforeach ?>
+                    </table>
+                <?php endif ?>
+            </td>
+            <input id="inpOrderId" name="inpOrderId" type="hidden" value="" />
+        </tr>
+    </table>
+</form>

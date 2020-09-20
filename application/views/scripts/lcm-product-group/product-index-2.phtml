@@ -1,0 +1,52 @@
+<div class="contentWrapper">
+    <!-- breadcrumb -->
+    <p>
+        <?php foreach($this->breadCrumb as $bci): ?>
+            <a class="breadCrumb" href="/<?php echo $this->escape($bci['path']) ?>"> &gt; <?php echo $this->escape($bci['title']) ?></a>
+        <?php endforeach ?>
+    </p>
+    <!-- information about current group -->
+    <p style="padding:5px">
+        <?php echo $this->groupItem->getDescription() ?>
+    </p>
+    <?php foreach($this->productItems as $pi): ?>  
+    <hr />
+    <br />
+    <table>
+        <tr>
+            <?php if($pi->getFrontImage() != ''): ?>
+            <td>
+                <img class="indexImage" alt="" src="<?php echo $this->escape($pi->getFrontImage()) ?>" />
+            </td>
+            <?php endif ?>
+            <td>
+                <div class="indexTitle">
+                    <a href="<?php echo $this->cms->title2path($this->escape($this->groupItem->getTitle()) . '/' . $this->escape($pi->getTitle())) ?>"><?php echo $this->escape($pi->getTitle()) ?></a>
+                </div>
+                <div>
+                    <?php echo $pi->getDescription() ?>
+                </div>
+                <div>
+                    <a href="<?php echo $this->cms->title2path($this->escape($this->groupItem->getTitle()) . '/' . $this->escape($pi->getTitle())) ?>"> ...more details</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Price: <span class="price"><?php echo $this->escape($pi->getPrice()) ?> kn</span>
+                <br />
+        		<?php if($pi->getShowCart()): ?>                
+                <form id="divQuantity<?php echo $pi->getId() ?>" action="post">              
+                    Quantity:&nbsp;&nbsp;
+                    <input class="cart" type="text" name="inpQuantity<?php echo $this->escape($pi->getId()) ?>" id="inpQuantity<?php echo $this->escape($pi->getId()) ?>" />
+                    &nbsp;&nbsp;
+                    <a href="#" onclick="addToCart(<?php echo $this->escape($pi->getId()) ?>, document.getElementById('inpQuantity<?php echo $this->escape($pi->getId()) ?>').value); return false;">
+                        <img alt="" src="/images/cart.png" />&nbsp;&nbsp;add to cart
+                    </a>
+                </form>
+		        <?php endif ?>                
+            </td>            
+        </tr>              
+    </table>
+    <?php endforeach ?>
+</div>

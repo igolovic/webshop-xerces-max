@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Xerces-Max" />
+    <meta name="keywords" content="fitness sprave, teretana, aerobic, oprema"/>
+	<!-- Created in I.G.'s "Lightweight Content Management" CMS -->
+    <meta name="author" content="www.ivan-golovic.from.hr" />
+    <title>Xerces-Max</title>
+    <link rel="stylesheet" type="text/css" href="/xerces-max.css" />
+    <link rel="stylesheet" type="text/css" href="/tooltip.css" />
+    <link rel="shortcut icon" href="/images/xerces-max.ico" />
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide.css" />
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" href="/highslide/highslide-ie6.css" />
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/ddsmoothmenu.css" />
+    <link rel="stylesheet" type="text/css" href="/ddsmoothmenu-v.css" />
+    <script type="text/javascript" src="/lcm.js"></script>
+    <script type="text/javascript" src="/highslide/highslide-full.packed.js"></script>
+    <script type="text/javascript" src="/highslide/highslide-conf.js"></script>
+    <script type="text/javascript" src="/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/ddsmoothmenu.js"></script>
+    <script type="text/javascript" src="/swfobject.js"></script>
+    <script type="text/javascript">
+
+	/***********************************************
+	* Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+	* This notice MUST stay intact for legal use
+	* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+	***********************************************/
+    
+        ddsmoothmenu.init({
+                mainmenuid: "smoothmenu1", //menu DIV id
+                orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+                classname: 'ddsmoothmenu', //class added to menu's outer DIV
+                //customtheme: ["#1c5a80", "#18374a"],
+                contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+        });
+	
+    </script>
+</head>
+<body>
+
+<div id="dhtmltooltip"></div>
+<script type="text/javascript" src="/tooltip.js"></script>
+
+<center>
+
+    <br />
+    <table class="mainContentWrapper" cellspacing="0" cellpadding="0">
+	<!-- header -->
+	<tr>
+	    <td colspan="2">
+			<div id="banner">
+				<img src="/images/logo-1.jpg" />
+			</div>
+	    </td>
+	</tr>
+	<!-- menu -->
+	<tr>
+	    <td>
+		<div id="smoothmenu1">
+		    <ul>
+			<?php foreach ($this->menuItems as $item): ?>
+			<li>
+			    <a href="<?php echo $item->getUrl() ?>">
+				<?php echo $item->getTitle() ?>
+			    </a>
+			    <?php if(count($item->getChildren()) > 0): ?>
+			    <ul>
+			    <?php foreach ($item->getChildren() as $child): ?>
+				<li>
+				    <a href="<?php echo $child->getUrl() ?>">
+					<?php echo $child->getTitle() ?>
+				    </a>
+				    <?php if(count($child->getChildren()) > 0): ?>
+				    <ul>
+				    <?php foreach ($child->getChildren() as $grandChild): ?>
+					<li>
+					    <a href="<?php echo $grandChild->getUrl() ?>">
+						<?php echo $grandChild->getTitle() ?>
+					    </a>
+					</li>
+				    <?php endforeach ?>
+				    </ul>
+				    <?php endif ?>
+				</li>
+			    <?php endforeach ?>
+			    </ul>
+			    <?php endif ?>
+			</li>
+			<?php endforeach ?>
+		    </ul>
+		    <br style="clear: left" />
+		</div>
+	    </td>
+	    <td class="menu">
+		<form action="/lcm-search" method="post" id="searchForm">
+		    <input class="searchIcon" type="image" onclick="document.getElementById('searchForm').submit" src="/images/search.png" />
+		    <input style="float:right;" type="text" maxlength="50" value="Pretraživanje" onblur="if(this.value==''){this.value='Pretraživanje';}" onfocus="if(this.value=='Pretraživanje'){this.value='';}" name="searchQuery" />    
+		</form>	
+	    </td>
+	</tr>
+	<!-- left and right content -->
+	<tr>
+	    <!-- left content -->
+	    <td id="leftContent" class="leftContent">
+		<?php echo $this->layout()->content ?>
+	    </td>
+	    <!-- right content -->
+	    <td class="rightContent">
+		<br />
+
+		<center>
+
+		    <table class="cart" cellspacing="0" cellpadding="2">
+			<tr>
+			    <td style="color:white; font-weight:bold; background-color:#414141; border-collapse:collapse;" colspan="2">
+				Jezici
+			    </td>
+			</tr>
+			<tr>
+			    <td style="text-align:center;">
+				<a class="lang" href="/lcm-language/1?<?php echo("returnUrl=" . urlencode($_SERVER['REQUEST_URI'])) ?>">Hrvatski</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="lang" href="/lcm-language/2?<?php echo("returnUrl=" . urlencode($_SERVER['REQUEST_URI'])) ?>">English</a>
+			    </td>
+			</tr>
+		    </table>
+		    
+		    <br />
+		    
+		    <table class="cart" cellspacing="0" cellpadding="2">
+			<tr>
+			    <td style="color:white; font-weight:bold; background-color:#414141; border-collapse:collapse;" colspan="2">
+				Alati
+			    </td>
+			</tr>
+			<tr>
+			    <td style="text-align:center;">
+				<ul class="utilities">
+				    <li>
+					<a style="border:none;" href="#/print=<?php echo $_SERVER['REQUEST_URI'] ?>" onclick="window.open('/print=<?php echo $_SERVER['REQUEST_URI'] ?>', '_blank', 'width=800,height=600');">
+					    <img onmouseover="ddrivetip('Ispis stranice')"; onmouseout="hideddrivetip()" alt="" src="/images/print.png" />
+					</a>
+				    </li>
+				    <li>
+					<a style="border:none;" href="/lcm-sendlink/link=<?php echo $_SERVER["SERVER_NAME"] . $_SERVER['REQUEST_URI'] ?>" onclick="return hs.htmlExpand(this, { headingText: 'Pošalji link kao preporuku prijatelju', objectType: 'iframe', width:300, height:450 } )">
+					    <img onmouseover="ddrivetip('Pošalji link prijatelju')"; onmouseout="hideddrivetip()" alt="" src="/images/email.png" />
+					</a>
+				    </li>
+				    <li>
+					<a style="border:none;" href="/lcm-sitemap">
+					    <img onmouseover="ddrivetip('Mapa sajta')"; onmouseout="hideddrivetip()" alt="" src="/images/sitemap.png" />
+					</a>
+				    </li>
+				    <li>
+					<a style="border:none;" href="/lcm-contact">
+					    <img onmouseover="ddrivetip('Kontakt obrazac')"; onmouseout="hideddrivetip()" alt="" src="/images/contact.png" />
+					</a>
+				    </li>
+				</ul>
+			    </td>
+			</tr>
+		    </table>
+		    
+		    <br />
+		    
+		    <table class="cart" cellspacing="0" cellpadding="2">
+			<tr>
+			    <td style="color:white; font-weight:bold; background-color:#414141; border-collapse:collapse;" colspan="2">
+				Košarica
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				Proizvoda u košarici:
+				<span id="spanCartItemCount">
+				    <?php echo $this->cartItemCount ?>
+				</span>
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				Ukupno:
+				<span id="spanCartValueTotal">
+				    <?php echo $this->cartValueTotal ?>
+				</span>
+				kn
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				<a style="font-weight:bold;" href="/lcm-cart/index">Pregled košarice</a>
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				<div class="highslide-html-content" style="visibility:hidden;width:300px;" id="divEmptyCart">
+				    <div class="highslide-header">
+					<a href="#" onclick="return hs.close(this)" title="Zatvori" style="float:right; font-weight:normal">Zatvori</a>
+				    </div>
+				    <div class="highslide-body">
+					<p style="font-weight:bold; text-align:center;">
+					    Da li ste sigurni da želite isprazniti košaricu?
+					    <br />
+					    <a href="#" onclick="emptyCart(); return hs.close(this);" title="Zatvori" style="font-weight:normal">Isprazni</a>
+					    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <a href="#" onclick="return hs.close(this);" title="Zatvori" style="font-weight:normal">Odustani</a>    
+					</p>
+				    </div>
+				</div>			
+				<a style="font-weight:bold;" href="#" onclick="return hs.htmlExpand(this, { contentId: 'divEmptyCart', numberPosition:null } );">Isprazni košaricu</a>
+			    </td>
+			</tr>
+		    </table>
+		    
+		</center>
+	    </td>
+	</tr>
+	<!-- footer -->
+	<tr>
+	    <td class="footer" colspan="2">
+		    &copy; Xerces-Max 2010.
+		    <!--<br />
+		    <a href="http://www.ivan-golovic.from.hr" class="author" target="_blank">www.ivan-golovic.from.hr</a>
+		    --><br />
+		    <br />
+	    </td>
+	</tr>
+    </table>
+
+</center>
+
+</body>
+</html>

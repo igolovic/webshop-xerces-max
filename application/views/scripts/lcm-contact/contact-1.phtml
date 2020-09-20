@@ -1,0 +1,71 @@
+<div class="contentWrapper">
+    <div class="indexTitle">
+        Kontakt obrazac
+    </div>
+    <form action="/lcm-contact" method="post">
+        <p>
+            1. Vaše ime
+        </p>
+        <p>
+            <input type="text" name="senderName" maxlength="40" style="width:250px;" />
+        </p>
+        <p>
+            2. Vaša e-mail adresa
+        </p>
+        <p>
+            <input type="text" name="senderAddress" maxlength="40" style="width:250px;" /> 
+        </p>
+        <p>
+            2. Poruka
+        </p>
+        <p>
+            <textarea name="message" rows="5" cols="10" style="width:500px;"></textarea> 
+        </p>
+        <p>
+            4. Sigurnosna provjera
+        </p>
+        <p>
+            Upišite tekst sa donje slike u polje ispod slike.
+        </p>
+        <p style="text-align:left;">
+            <?php echo $this->captchaImage ?>
+        </p>
+        <p>
+            <input type="text" name="captcha[input]" maxlength="20" style="width:250px;" />
+        </p>
+        <p>
+            <input type="submit" value="Pošalji" />
+        </p>
+        <div class="error">
+            <?php if($this->messageError): ?>
+                Poruka je obavezna u kontakt obrascu i mora imati najviše 4000 znakova.
+            <?php endif ?>
+        </div>        
+        <div class="error">
+            <?php if($this->senderNameError): ?>
+                Niste unijeli Vaše ime.
+            <?php endif ?>
+        </div>
+        <div class="error">
+            <?php if($this->senderAddressError): ?>
+                Niste unijeli e-mail adresu.
+            <?php endif ?>
+        </div>
+        <div class="error">
+            <?php if($this->captchaError): ?>
+                Unijeli ste krivi tekst, pokušajte ponovno.
+            <?php endif ?>
+        </div>
+        <div class="error">
+            <?php if($this->sendMailError): ?>
+                Greška prilikom slanja kontakt poruke.
+            <?php endif ?>
+        </div>
+        <div class="ok">
+            <?php if($this->ok): ?>
+                Poruka je uspješno poslana.
+            <?php endif ?>
+        </div>
+        <input type="hidden" name="captcha[id]" value="<?php echo $this->escape($this->captchaMD5) ?>" />
+    </form>
+</div>
